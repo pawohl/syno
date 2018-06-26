@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # Purpose: Update server certificates
 
@@ -44,7 +44,7 @@ fi
 
 for d in "${CERT_DIRS[@]}"
 do
-	if [ -d "$DIRECTORY" ]; then
+	if [ -d "$d" ]; then
 		cp /tmp/syno-cert/cert.pem "$d"
 		cp /tmp/syno-cert/chain.pem "$d"
 		cp /tmp/syno-cert/fullchain.pem "$d"
