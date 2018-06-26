@@ -6,6 +6,8 @@ set -euo pipefail
 
 # find certificates that might need an update
 # cd / && find . -name "*.pem"
+# check certificate
+# openssl x509 -in cert.pem -text -noout
 
 declare -a CERT_DIRS
 CERT_DIRS=(\
