@@ -10,7 +10,7 @@ set -euo pipefail
 declare -a CERT_DIRS
 CERT_DIRS=(\
 	'/usr/local/etc/certificate/LogCenter/pkg-LogCenter/' \
-	'/usr/local/etc/certificate/WebStation/vhost_225bb9ca-d884-44dd-a0f9-83ff557b95d6/' \
+	'/usr/local/etc/certificate/WebStation/vhost_280bb9ca-b884-43dd-a0f9-82fe551b95d6/' \
 	'/usr/local/etc/certificate/CloudStation/CloudStationServer/' \
 	'/usr/local/etc/certificate/DirectoryServer/slapd/' \
 	'/usr/syno/etc/certificate/AppPortal/VideoStation/' \
