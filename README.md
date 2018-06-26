@@ -1,7 +1,7 @@
 # syno
 synology config and scripts
 
-Synology NAS has Let's Encrypt Certificate retrieval built-in. However, this only works if the NAS is exposed to the Internet.
+Synology NAS has Let's Encrypt Certificate retrieval built-in. However, automated renewal through Synology's certificate manager only works if the NAS is exposed to the Internet. In case, it is not, you need a workaround like these scripts and a DNS server that allows connections from Let's Encrypt or some kind of DNS API (OVH and other mature registrars offer that). These scripts are written for tinydns DNS server.
 
 ## refresh-cert.sh
 
