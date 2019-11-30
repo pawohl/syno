@@ -14,7 +14,10 @@ CERT_DIRS=(\
 	'/usr/local/etc/certificate/LogCenter/pkg-LogCenter/' \
 	'/usr/local/etc/certificate/WebStation/vhost_280bb9ca-b884-43dd-a0f9-82fe551b95d6/' \
 	'/usr/local/etc/certificate/CloudStation/CloudStationServer/' \
+	'/usr/local/etc/certificate/SynologyDrive/SynologyDrive/' \
 	'/usr/local/etc/certificate/DirectoryServer/slapd/' \
+	'/usr/syno/etc/certificate/AppPortal/SynologyDrive/' \
+	'/usr/syno/etc/certificate/AppPortal/SynologyMoments/' \
 	'/usr/syno/etc/certificate/AppPortal/VideoStation/' \
 	'/usr/syno/etc/certificate/AppPortal/AudioStation/' \
 	'/usr/syno/etc/certificate/AppPortal/FileStation/' \
@@ -59,6 +62,8 @@ set +e
 synoservicectl --reload pkgctl-LogCenter
 synoservicectl --reload pkgctl-WebStation
 synoservicectl --reload pkgctl-CloudStation
+synoservicectl --reload pkgctl-SynologyDrive
+synoservicectl --reload pkgctl-SynologyMoments
 synoservicectl --reload pkgctl-DirectoryServer
 synoservicectl --reload pkgctl-VideoStation
 synoservicectl --reload pkgctl-AudioStation
