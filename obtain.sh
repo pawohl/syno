@@ -17,7 +17,7 @@ rm "$base.cer" "$base.chain" "$base.fullchain"
       -d file.pahl.ovh -d dl.pahl.ovh -d notes.pahl.ovh \
       -d notes.pahl.ovh -d calendar.pahl.ovh -d carddav.pahl.ovh \
       -d chat.pahl.ovh -d xd.pahl.ovh -d dns.pahl.ovh \
-      -d drive.pahl.ovh -d webdav.pahl.ovh \
+      -d drive.pahl.ovh -d webdav.pahl.ovh -d moments.pahl.ovh \
       --manual --preferred-challenges dns certonly \
       --csr            "$base.csr" \
       --cert-path      "$base.cer" \

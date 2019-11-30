@@ -51,6 +51,7 @@ DNS.19 = dns.pahl.ovh
 DNS.20 = drive.pahl.ovh
 DNS.21 = webdav.pahl.ovh
 DNS.22 = cp.pahl.ovh
+DNS.23 = moments.pahl.ovh
 
 EOF
 )
