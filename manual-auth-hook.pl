@@ -7,13 +7,14 @@
 use strict;
 use warnings;
 use File::Copy 'move';
+use File::Temp qw/ tempfile tempdir /;
 
 our $domain, our $validation, our $re, our $record;
-our $tinydnsdir, our $inputFile, our $outputFile, our $lockFile;
+our $tinydnsdir, our $inputFile, our $outputFile, our $fh, our $lockFile;
 
 $tinydnsdir = '/etc/tinydns/root';
 $inputFile = "$tinydnsdir/data";
-$outputFile = "$tinydnsdir/data.new";
+($fh, $outputFile) = tempfile( DIR => $tinydnsdir, UNLINK => 1, SUFFIX => '.tmp.data' );
 $lockFile = '/tmp/tinydns.up.lock';
 
 if ( ! exists $ENV{'CERTBOT_DOMAIN'} || ! defined $ENV{'CERTBOT_DOMAIN'} ) {
@@ -40,6 +41,7 @@ if ( -e $lockFile ) {
 
 # always unlock when leaving
 END {
+    deleteTempFile();
     deleteLockFile();
 }
 
@@ -93,6 +95,10 @@ sub updateRecords {
 
 sub deleteLockFile {
     unlink $lockFile or warn "Could not unlink $lockFile: $!";
+}
+
+sub deleteTempFile {
+    unlink $outputFile or warn "Could not unlink $outputFile: $!";
 }
 
 sub createMatcher {
