@@ -63,11 +63,12 @@ close $lock;
 updateRecords();
 
 # Move new file over old one
-move $outputFile, $inputFile
+move $outputFile, "$inputFile.swp"
     or die "Could not move $inputFile to $outputFile: $!";
 
-# Rebuild tinydns database
-`cd $tinydnsdir && make`;
+# Wait for tinydns database rebuild
+#`cd $tinydnsdir && make`;
+while(-e "$inputFile.swp") { sleep 1; }
 
 sub updateRecords {
     open my $input, $inputFile
@@ -114,7 +115,7 @@ sub createTextRecord {
 
 sub escapeText {
     my $line = pop @_;
-    my $out;
+    my $out = "";
     my @chars = split //, $line;
 
     foreach my $char ( @chars ) {

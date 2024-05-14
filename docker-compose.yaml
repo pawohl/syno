@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  certbot:
+    build: .
+    restart: always
+    volumes:
+      - syno-cert-data:/cert-data
+      - syno-certs-public:/syno-certs-public
+      - tinydns-root:/etc/tinydns/root
+    command: ["/entrypoint.sh"]
+    entrypoint: ash
+
+volumes:
+  tinydns-root:
+    external: true
+    name: tinydns-root
+  syno-cert-data:
+    name: synology-cert-data
+  syno-certs-public:
+    name: synology-certs-public
+

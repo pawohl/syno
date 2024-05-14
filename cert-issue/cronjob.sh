@@ -10,6 +10,7 @@
 # $1: Certificate
 # $2: Chain
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 expirationDate=$(openssl x509 -enddate -noout -in "$1")
 echo "$(date)"
 echo "Certificate $1 will expire on $expirationDate."
@@ -19,7 +20,7 @@ then
   echo "Certificate is still valid."
 else
   echo "Certificate is invalid. Re-issueing."
-  exec /etc/cert/obtain.sh
+  exec "$SCRIPT_DIR"/obtain.sh
 fi
 
 if openssl x509 -checkend 1382400 -noout -in "$1"
@@ -27,6 +28,6 @@ then
   echo "No renewal required."
 else
   echo "Certificate expires in 16 days or less. Re-issueing."
-  exec /etc/cert/obtain.sh
+  exec "$SCRIPT_DIR"/obtain.sh
 fi
 

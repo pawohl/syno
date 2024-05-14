@@ -3,13 +3,15 @@
 # purpose: obtain a certificate from Let's Encrypt
 #          using certbot-auto and a CSR
 
-baseDir="/etc/cert"
+baseDir="/cert-data"
 baseName="san-synology"
 base="$baseDir/$baseName"
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 rm "$base.cer" "$base.chain" "$base.fullchain"
 
-/opt/certbot-auto -n --agree-tos \
+certbot -n --agree-tos \
+      --email 'felix@wohlpa.de' \
       -d wiki.wohlpa.de -d wiki.pahlow.ovh -d wiki.pahl.ovh \
       -d cp.wohlpa.de -d cp.pahlow.ovh -d cp.pahl.ovh \
       -d audio.pahl.ovh -d video.pahl.ovh -d photo.pahl.ovh \
@@ -23,8 +25,7 @@ rm "$base.cer" "$base.chain" "$base.fullchain"
       --cert-path      "$base.cer" \
       --chain-path     "$base.chain" \
       --fullchain-path "$base.fullchain" \
-      --manual-auth-hook "$baseDir/manual-auth-hook.pl" \
-      --manual-public-ip-logging-ok
+      --manual-auth-hook "$SCRIPT_DIR/manual-auth-hook.pl"
 
-cp "$base.cer" "$base.chain" "$base.fullchain" /var/www/static/cert.wohlpa.de/
+cp "$base.cer" "$base.chain" "$base.fullchain" /syno-certs-public
 
