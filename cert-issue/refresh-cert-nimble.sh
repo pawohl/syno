@@ -18,7 +18,7 @@ urlbase='https://cert.wohlpa.de/'
 filebase='nimble'
 base="${urlbase}${filebase}"
 
-mkdir -p /tmp/syno-cert
+mkdir -p /tmp/nimble
 
 wget -nv -O /tmp/nimble/cert.pem "${base}.cer"
 wget -nv -O /tmp/nimble/chain.pem "${base}.chain"
