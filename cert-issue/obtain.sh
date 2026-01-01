@@ -5,7 +5,9 @@
 
 baseDir="/cert-data"
 baseName="san-synology"
+baseNameNimble="nimble"
 base="$baseDir/$baseName"
+baseNimble="$baseDir/$baseNameNimble"
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # issue for synology
@@ -31,17 +33,17 @@ certbot -n --agree-tos \
 cp "$base.cer" "$base.chain" "$base.fullchain" /syno-certs-public
 
 # issue for nimble
-rm "$base.cer" "$base.chain" "$base.fullchain"
+rm "$baseNimble.cer" "$baseNimble.chain" "$baseNimble.fullchain"
 
 certbot -n --agree-tos \
       --email 'felix@wohlpa.de' \
       -d ha.pahl.ovh \
       --manual --preferred-challenges dns certonly \
-      --csr            "$base-nimble.csr" \
-      --cert-path      "$base-nimble.cer" \
-      --chain-path     "$base-nimble.chain" \
-      --fullchain-path "$base-nimble.fullchain" \
+      --csr            "$baseNimble.csr" \
+      --cert-path      "$baseNimble.cer" \
+      --chain-path     "$baseNimble.chain" \
+      --fullchain-path "$baseNimble.fullchain" \
       --manual-auth-hook "$SCRIPT_DIR/manual-auth-hook.pl"
 
-cp "$base-nimble.cer" "$base-nimble.chain" "$base-nimble.fullchain" /syno-certs-public
+cp "$baseNimble.cer" "$baseNimble.chain" "$baseNimble.fullchain" /syno-certs-public
 
